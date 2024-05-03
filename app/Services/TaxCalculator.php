@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Interfaces\Tax;
+use App\Abstracts\Tax;
 use App\Models\Budget;
 
 class TaxCalculator

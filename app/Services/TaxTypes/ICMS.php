@@ -2,12 +2,12 @@
 
 namespace App\Services\TaxTypes;
 
-use App\Interfaces\Tax;
+use App\Abstracts\Tax;
 use App\Models\Budget;
 
-class ICMS implements Tax
+class ICMS extends Tax
 {
-    public function calc(Budget $budget) : float
+    public function handleCalc(Budget $budget) : float
     {
         return $budget->value * 0.1;
     }
