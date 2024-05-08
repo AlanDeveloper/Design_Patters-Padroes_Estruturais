@@ -7,9 +7,10 @@ use App\Models\Order;
 require 'vendor/autoload.php';
 
 $orders = [];
-$data = new DataExtrinsic();
-$data->date_finished = new DateTimeImmutable();
-$data->client_name = md5((string) rand(1, 100000));
+
+$client_name = md5((string) rand(1, 100000));
+$date_finished = new DateTimeImmutable();
+$data = new DataExtrinsic($client_name, $date_finished);
 
 for ($i=0; $i < 10000; $i++) { 
     $order = new Order();
