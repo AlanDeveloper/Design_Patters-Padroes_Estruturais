@@ -2,6 +2,7 @@
 
 use App\Models\Budget;
 use App\Models\ItemBudget;
+use App\Services\CacheBudgetProxy;
 
 require 'vendor/autoload.php';
 
@@ -21,4 +22,7 @@ $item3->value = 250;
 $old_budget->addItem($item3);
 $budget->addItem($old_budget);
 
-echo $budget->getValue();
+$proxy = new CacheBudgetProxy($budget);
+
+echo $proxy->getValue() . PHP_EOL;
+echo $proxy->getValue() . PHP_EOL;

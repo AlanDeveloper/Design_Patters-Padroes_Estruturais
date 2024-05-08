@@ -9,6 +9,7 @@ class ItemBudget implements Budgeted
 
     public function getValue(): float
     {
+        sleep(1);
         return $this->value;
     }
 }
