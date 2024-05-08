@@ -3,19 +3,29 @@
 namespace App\Models;
 
 use App\Abstracts\BudgetState;
-use App\Services\BudgetStateTypes\Approved;
+use App\Interfaces\Budgeted;
 use App\Services\BudgetStateTypes\OnApproval;
-use DomainException;
-use Exception;
 
-class Budget
+class Budget implements Budgeted
 {
-    public float $value;
-    public int $items_quantity;
+    private array $items;
     public BudgetState $state;
 
     public function __construct() {
         $this->state = new OnApproval();
+        $this->items = [];
+    }
+
+    public function addItem(Budgeted $item): void
+    {
+        $this->items[] = $item; 
+    }
+
+    public function getValue(): float
+    {
+        return array_reduce($this->items, function (float $total, Budgeted $item) {
+            return $total + $item->getValue();
+        }, 0);
     }
 
     public function applyExtraDiscount() : void
