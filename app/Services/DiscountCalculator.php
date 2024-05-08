@@ -17,6 +17,11 @@ class DiscountCalculator
             )
         );
 
-        return $queue->calc($budget);
+        $value = $queue->calc($budget);
+        
+        $log = new LogDiscount();
+        $log->info($value);
+
+        return $value;
     }
 }
