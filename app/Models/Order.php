@@ -6,7 +6,6 @@ use DateTimeInterface;
 
 class Order
 {
-    public string $client_name;
-    public DateTimeInterface $date_finished;
+    public DataExtrinsic $data;
     public Budget $budget;
 }
